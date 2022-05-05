@@ -43,35 +43,49 @@ function moviesAverageOfDirector(movies, director) {
 // Exercise 4:  Alphabetic order by title 
 function orderAlphabetically (movies) {
 
-  let moviesOrder = movies.sort(function(a, b) {
-    
-    if (a.title > b.title) {
-        return 1;
-    }
-    if (a.title < b.title) {
-        return -1;
-    }
-    return 0;
-     }); 
+  let moviesOrder = movies.map(movie => movie.title).sort().slice(0,20)
   
-  let result = moviesOrder.slice(0, 20);
-  console.log("EXERCICE 4 ->", result)
-  return  result.map(movie => movie.title)
+  return moviesOrder
 
 }
 
 // Exercise 5: Order by year, ascending
-function orderByYear() {
+function orderByYear(movies) {
+  let moviesOrderByYear = [];
+  moviesOrderByYear =  [...movies].sort(function(a, b) {
+    
+    if (a.year > b.year) {
+        return 1;
+    }
+    if (a.year < b.year) {
+        return -1;
+    }
+    if (a.year === b.year){
+
+       if (a.title > b.title) {
+         return 1;
+       }
+       if (a.title < b.title) {
+         return -1
+       }
+       return 0
+    }
+   
+     });
+     return moviesOrderByYear;
+     
 
 }
 
 // Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory() {
+function moviesAverageByCategory(movies, genre) {
+
 
 }
 
 // Exercise 7: Modify the duration of movies to minutes
-function hoursToMinutes() {
+function hoursToMinutes(movies) {
+
 
 }
 
