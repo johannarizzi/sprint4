@@ -8,7 +8,7 @@ function getAllDirectors(movies) {
 
   let result = movies.map(movie => movie.director);
   console.log("EXERCICE 1 ->", result);
-    return result;
+  return result;
   
  }
 
@@ -20,7 +20,6 @@ function getAllDirectors(movies) {
 function getMoviesFromDirector(movies, director) {
 
   let filmsDirector = movies.filter(movie => movie.director === director);
-  console.log("EXERCICE 2 ->", filmsDirector);
   return filmsDirector;
   
 }
@@ -30,12 +29,8 @@ function moviesAverageOfDirector(movies, director) {
   
   const nameDirector = getMoviesFromDirector(movies, director);
  
-  let scoreDirector = nameDirector.reduce((counter, number) => { 
-    
-    return {score : counter.score + number.score};
-  } , {score : 0});
-   let average = parseFloat((scoreDirector.score / nameDirector.length).toFixed(2));
-   console.log("EXERCICE 3 ->", average);
+  let scoreDirector = nameDirector.reduce((counter, number) => counter + number.score, 0 );
+   let average = parseFloat((scoreDirector / nameDirector.length).toFixed(2));
   return average;
 
 }
@@ -43,16 +38,16 @@ function moviesAverageOfDirector(movies, director) {
 // Exercise 4:  Alphabetic order by title 
 function orderAlphabetically (movies) {
 
-  let moviesOrder = movies.map(movie => movie.title).sort().slice(0,20)
+  let moviesOrder = movies.map(movie => movie.title).sort().slice(0,20);
   
-  return moviesOrder
+  return moviesOrder;
 
 }
 
 // Exercise 5: Order by year, ascending
 function orderByYear(movies) {
   let moviesOrderByYear = [];
-  moviesOrderByYear =  [...movies].sort(function(a, b) {
+  moviesOrderByYear = [...movies].sort((a, b) => {
     
     if (a.year > b.year) {
         return 1;
@@ -79,19 +74,32 @@ function orderByYear(movies) {
 
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory(movies, genre) {
-
+  let movieGenre = movies.filter(movie => movie.genre.includes(genre));
+  let movieScore = movieGenre.filter(movie => typeof movie.score === 'number');
+  return moviesAverageOfDirector(movieScore);
 
 }
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes(movies) {
 
+  const newDuration = [...movies];
+  return newDuration.map((movie) => {
+    let [hours, minutes] = movie.duration.replace(/[hmin]/g,"").split(" ");
+    hours = hours || 0;
+    minutes = minutes || 0;
+    return { ...movie, duration: parseInt(hours) * 60 + parseInt(minutes)}
+  });
 
 }
 
+
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {
-  
+function bestFilmOfYear(movies, year) {
+
+  let bestMovie = movies.filter(movie => movie.year === year).sort().slice(0,1);
+
+  return bestMovie
 }
 
 
