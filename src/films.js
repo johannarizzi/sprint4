@@ -87,10 +87,10 @@ function hoursToMinutes(movies) {
     let duration = movie.duration.split(" ");
     let hours = parseInt(duration[0]);
     let minutes = (parseInt(duration[1]) > 0 ? parseInt(duration[1]) : 0);
-    const horursToMinutes = hours* 60 + minutes;
+    const hoursToMinutes = hours* 60 + minutes;
     return {
       ...movie,
-      duration: horursToMinutes
+      duration: hoursToMinutes
     };
   });
   return newDuration;
