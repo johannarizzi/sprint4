@@ -84,8 +84,8 @@ function moviesAverageByCategory(movies, genre) {
 function hoursToMinutes(movies) {
 
   const newDuration = movies.map((movie) => {
-    const duration = movie.duration.split(" ");
-    const hours = parseInt(duration[0]);
+    let duration = movie.duration.split(" ");
+    let hours = parseInt(duration[0]);
     let minutes = (parseInt(duration[1]) > 0 ? parseInt(duration[1]) : 0);
     const horursToMinutes = hours* 60 + minutes;
     return {
