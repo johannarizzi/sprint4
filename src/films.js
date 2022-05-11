@@ -85,10 +85,12 @@ function hoursToMinutes(movies) {
 
   const newDuration = [...movies];
   return newDuration.map((movie) => {
-    let [hours, minutes] = movie.duration.replace(/[hmin]/g,"").split(" ");
+    let hours = movie.duration.replace(/[h]/g,"").split(" ");
+    let minutes = movie.duration.replace(/[min]/g,"").split(" ");
     hours = hours || 0;
     minutes = minutes || 0;
-    return { ...movie, duration: parseInt(hours) * 60 + parseInt(minutes)}
+    movieDuration = { ...movie, duration: parseInt(hours) * 60 + parseInt(minutes)}
+    return movieDuration
   });
 
 }
